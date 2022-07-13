@@ -82,7 +82,7 @@ for curr_file = 1:length(flist)
 
     eeg{1} = EDFdata.data(7:20,:);
     %harus menambahkan variable event untuk disimpan di setiap prosesnya
-    file_proc_info.evt_info = EDFdata.event; 
+        file_proc_info.evt_info = EDFdata.event; 
     
     % save source file variables; resfy: ambil data dari header EDF saja
     file_proc_info.src_fname=grp_proc_info_in.src_fname_all(curr_file);%file name: EEG.filename 
@@ -130,6 +130,6 @@ for curr_file = 1:length(flist)
         file_proc_info = beapp_prepare_to_save_file('format',file_proc_info, grp_proc_info_in,grp_proc_info_in.src_dir{1});
         save(file_proc_info.beapp_fname{1},'file_proc_info','eeg'); %,'allEDFdata');
     end
-    clearvars -except grp_proc_info_in curr_file user_unique_nets markerCh
+    clearvars -except grp_proc_info_in curr_file user_unique_nets
 end
 clear grp_proc_info_in.src_srate_all grp_proc_info_in.src_linenoise_all grp_proc_info_in.src_net_typ_all

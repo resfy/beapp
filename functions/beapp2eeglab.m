@@ -40,19 +40,26 @@
 % You should receive a copy of the GNU General Public License along with
 % this program. If not, see <http://www.gnu.org/licenses/>.
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function EEG = beapp2eeglab(file_proc_info,eeg_curr_rec_period,curr_rec_period,event_data,beapp_stage)
+function EEG = beapp2eeglab(file_proc_info,eeg_curr_rec_period,curr_rec_period)%,event_data)%,beapp_stage)
 % initialize EEGLab structure using EEGLab script
 EEG=eeg_emptyset;
-EEG.data = eeg_curr_rec_period;
-EEG.srate=file_proc_info.beapp_srate;
+EEG.data = eeg_curr_rec_period{1};
+EEG.srate = file_proc_info.beapp_srate;
 EEG.setname = file_proc_info.beapp_fname{1};
-EEG.nbchan=file_proc_info.beapp_nchans_used(curr_rec_period);
+EEG.nbchan = file_proc_info.beapp_nchans_used(curr_rec_period);
 EEG.chanlocs=file_proc_info.net_vstruct;
 EEG.history=sprintf(['EEG = pop_importdata(''dataformat'',''matlab'',''nbchan'',0,''data'',',file_proc_info.beapp_fname{1},'''',',''setname'',''BEAPP_Dataset'',''srate'',0,''pnts'',0,''xmin'',0);\n','EEG = eeg_checkset( EEG );']);
 EEG.noiseDetection.status = [];
 EEG.noiseDetection.errors.status = '';
-if isfield(file_proc_info,'evt_info') && event_data
-    EEG =add_events_eeglab_struct(EEG,file_proc_info.evt_info{curr_rec_period});
+if isfield(file_proc_info,'evt_info') ==1
+    EEG.event = file_proc_info.evt_info;
 end
+% for i = 1: length(EEG.event)
+%     EEG.event(i).epoch=i;
+% end
+
+% if isfield(file_proc_info,'evt_info') && event_data
+%     EEG =add_events_eeglab_struct(EEG,file_proc_info.evt_info{curr_rec_period});
+% end
 EEG=orderfields(EEG);
 EEG=eeg_checkset(EEG);

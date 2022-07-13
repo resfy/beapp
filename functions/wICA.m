@@ -64,7 +64,9 @@ wavename=varargin{6}; else wavename='coif5';end
 % run ICA using "runica" or "radical"
 if strcmp(type,'runica')
     [OUTEEG, com] = pop_runica(EEG, 'extended',1,'interupt','on','verbose', 'off'); %runica for parametric, default extended for finding subgaussian distributions
+    %save('EEGstruct','OUTEEG')
     W = OUTEEG.icaweights*OUTEEG.icasphere;
+    %size(W)
     A = inv(W);
     IC=reshape(OUTEEG.icaact, size(OUTEEG.icaact,1), []);
     %com = pop_export(OUTEEG,'ICactivationmatrix','ica','on','elec','off','time','off','precision',4);

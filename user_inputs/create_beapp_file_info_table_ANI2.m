@@ -1,7 +1,7 @@
 %% mat_file_info_table generation
 
 % directory where files are stored (check me!)
-table_files_src_dir = epochDir;%'D:\Vanaya Neurolab\ANI NEW STIMULUS - DATA SAMPLE\2-PPFilesRiset';
+table_files_src_dir = SourceDir;%'D:\Vanaya Neurolab\ANI NEW STIMULUS - DATA SAMPLE\2-PPFilesRiset';
 % full path to eeglab.m within BEAPP-HAPPE (check me!)
 eeglab_path = EEGlabDir;%'D:\Vanaya Neurolab\MATLAB CODES\BEAPP\beapp\Packages\eeglab14_1_2b\eeglab.m';
 

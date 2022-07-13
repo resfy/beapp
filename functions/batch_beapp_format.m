@@ -30,7 +30,7 @@
 % You should receive a copy of the GNU General Public License along with
 % this program. If not, see <http://www.gnu.org/licenses/>.
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function grp_proc_info_in = batch_beapp_format(grp_proc_info_in)
+function grp_proc_info_in = batch_beapp_format(grp_proc_info_in,markerCh,headsetType)
 disp('|====================================|');
 disp('Converting data to BEAPP format');
 
@@ -47,9 +47,9 @@ switch grp_proc_info_in.src_format_typ
     case 5 % EEGLAB pre-segmented
         grp_proc_info_in = batch_eeglab2beapp(grp_proc_info_in);
     case 6 %  BDFs and EDFs
-        grp_proc_info_in = batch_edf2beapp(grp_proc_info_in);
+        grp_proc_info_in = batch_edf2beapp(grp_proc_info_in,markerCh);
     case 7
-        grp_proc_info_in = batch_edf2beapp(grp_proc_info_in);
+        grp_proc_info_in = batch_set2beapp(grp_proc_info_in,markerCh,headsetType);
         
     case 23 % EASY
         

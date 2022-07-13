@@ -70,6 +70,7 @@ EEG.dipfit      = [];
 EEG.history     = '';
 EEG.saved       = 'no';
 EEG.etc         = [];
+EEG.event.epoch = [];
 
 %EEG.reject.threshold  = [1 0.8 0.85];
 %EEG.reject.icareject  = [];

@@ -99,7 +99,7 @@ if nargin < 3
 end;
 
 if isempty(varargin) % no text output and no check (study loading)
-    [ EEG com ]  = eeg_checkset(EEG);
+    [ EEG com ]  = my_eeg_checkset(EEG);
 else
     com = '';
 end;

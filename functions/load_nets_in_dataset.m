@@ -40,6 +40,10 @@ function [net_vstructs,net_ref_rows,net_10_20_elecs,largest_nchan] = load_nets_i
 % get library variable names of coordinates of nets in data from catalog
 load(net_library_options_location);
 [~,~,nets_in_dataset] = intersect(src_unique_nets,net_library_options.Net_Full_Name,'stable');
+% display ('src_unique_nets :')
+% display (src_unique_nets)
+% display ('net_library_options.Net_Full_Name :')
+% display (net_library_options.Net_Full_Name)
 net_variables_in_dataset = net_library_options.Net_Variable_Name(nets_in_dataset);
 net_ref_rows = net_library_options.Ref_Elec_Row_Num(nets_in_dataset);
 net_10_20_elecs = net_library_options.Net_10_20_Electrode_Equivalents(nets_in_dataset);
@@ -47,7 +51,7 @@ cd(net_library_location)
 
 % load all nets in dataset into grp_proc_info for speed
 for curr_net = 1:length(net_variables_in_dataset)
-    load(net_variables_in_dataset{curr_net});
+        load(net_variables_in_dataset{curr_net});
     net_vstructs{curr_net} = sensor_layout;
     clear sensor layout
 end

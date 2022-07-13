@@ -395,6 +395,8 @@ end;
 switch lower(g.icatype)
     case 'runica' 
         try, if ismatlab, g.options = {  g.options{:}, 'interupt', 'on' }; end; catch, end; 
+        %tmprank
+        %save('tmpdata','tmpdata')
         if tmprank == size(tmpdata,1) | pca_opt
             [EEG.icaweights,EEG.icasphere] = runica( tmpdata, 'lrate', 0.001,  g.options{:} );
         else 

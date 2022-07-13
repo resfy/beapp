@@ -122,6 +122,8 @@ for curr_file=1:length(grp_proc_info_in.beapp_fname_all)
             
             % make EEGLAB struct, change 10-20 electrode labels for MARA
             EEG_orig = curr_epoch_beapp2eeglab(file_proc_info,eeg{curr_rec_period},curr_rec_period);
+            %file proc info dan eeg{} menunjukkan label kanal yang benar
+            %sedangkan EEG_orig merubah nama kanalnya jadi E1.
             
             % if HAPPE, run 1-250 bandpass filter, cleanline, and reject channels
             % either way, select EEG channels of interest for analyses

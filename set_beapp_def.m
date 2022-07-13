@@ -96,7 +96,7 @@
 % BEAPP was written in Matlab 2016a. Older versions of Matlab may not
 % support certain functions used in BEAPP. 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function grp_proc_info = set_beapp_def 
+function grp_proc_info = set_beapp_def (headsetType)
 %% version numbers for BEAPP and packages
 grp_proc_info.beapp_ver={'BEAPP_v4_1'};
 grp_proc_info.eeglab_ver = {'eeglab14_1_2b'};
@@ -218,8 +218,14 @@ grp_proc_info.beapp_rsamp_srate=250; %sampling rate that all resampled files sho
 grp_proc_info.beapp_rsamp_nsamp=[]; %number of samples after resampling
 
 %% ICA variables
-grp_proc_info.name_10_20_elecs = {'FP1','FP2','F7','F3','F4','F8','C3','C4','T5','PZ','T6','O1','O2','T3','T4','P3','P4','Fz'}; % does not include CZ
-grp_proc_info.beapp_ica_type  = 1; % 1 = ICA with MARA, 2 = HAPPE, 3 = only ICA 
+if headsetType == 'emotiv'
+    grp_proc_info.name_10_20_elecs = {'AF3','F7','F3','FC5','T7','P7','O1','O2','P8','T8','FC6','F4','F8','AF4'};
+elseif headsetType == 'deymed'
+    grp_proc_info.name_10_20_elecs = {'Fp1','Fp2','F7','F3','Fz','F4','F8','T7','C3','Cz','C4','T8','P7','P3','Pz','P4','P8','O1','O2'};
+else
+   grp_proc_info.name_10_20_elecs = {'FP1','FP2','F7','F3','F4','F8','C3','C4','T5','PZ','T6','O1','O2','T3','T4','P3','P4','Fz'}; % does not include CZ
+end
+grp_proc_info.beapp_ica_type  = 2; % 1 = ICA with MARA, 2 = HAPPE, 3 = only ICA 
 grp_proc_info.beapp_ica_run_all_10_20 = 1;
 grp_proc_info.beapp_ica_10_20_chans_lbls{1} = []; 
 grp_proc_info.beapp_ica_additional_chans_lbls{1}= []; %additional channels to use in ICA module besides 10-20

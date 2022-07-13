@@ -100,39 +100,39 @@
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % GENERAL USER INPUTS for BEAPP: Set these for any data runs
-grp_proc_info.src_dir={'D:\Vanaya Neurolab\ANI NEW STIMULUS - DATA SAMPLE\2-PPFilesRiset'}; %the directory containing your source files
-grp_proc_info.beapp_curr_run_tag = 'trial 3'; % The tag you would like to append to folder names for this run. def = '' or 'NONE'. 'NONE' mutes timestamping. If not given on a rerun, a timestamp will be used. 
+grp_proc_info.src_dir={'D:\Vanaya Neurolab\MATLAB CODES\BEAPP\data sample - ANI'}; %the directory containing your source files
+grp_proc_info.beapp_curr_run_tag = 'PREP'; % The tag you would like to append to folder names for this run. def = '' or 'NONE'. 'NONE' mutes timestamping. If not given on a rerun, a timestamp will be used. 
 grp_proc_info.beapp_prev_run_tag = ''; % def = ''.  run tag for previous run that you would like to use as source data for rerun. can be timestamp, but must be exact.
 grp_proc_info.beapp_advinputs_on= 0; %flag that toggles advanced user options, default is 0 (user did not set advanced user values)
 
 % MODULE SELECTION
 % pipeline flags:0=off, 1=on
 grp_proc_info.beapp_toggle_mods{'format',{'Module_On','Module_Export_On'}}=[1,1]; % Convert source files to BEAPP format
-grp_proc_info.beapp_toggle_mods{'prepp',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on PREP Pipeline
-grp_proc_info.beapp_toggle_mods{'filt',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on filtering V
-grp_proc_info.beapp_toggle_mods{'rsamp',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on resampling V 128Hz
-grp_proc_info.beapp_toggle_mods{'ica',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on ICA module (ICA, ICA+MARA, HAPPE) V
-grp_proc_info.beapp_toggle_mods{'rereference',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on rereferencing V
-grp_proc_info.beapp_toggle_mods{'detrend',{'Module_On','Module_Export_On'}}=[0,0]; % Turn on detrending  X
-grp_proc_info.beapp_toggle_mods{'segment',{'Module_On','Module_Export_On'}}=[1,1]; % Turn on segmentation V
-grp_proc_info.beapp_toggle_mods{'psd',{'Module_On','Module_Export_On'}}=[1,1]; %flag that toggles the PSD calculations V
-grp_proc_info.beapp_toggle_mods{'itpc',{'Module_On','Module_Export_On'}}=[0,0]; %turns ITPC analysis on, use with event data only V
-grp_proc_info.beapp_toggle_mods{'topoplot',{'Module_On','Module_Export_On'}}=[0,0]; % Turn on topoplots V
+grp_proc_info.beapp_toggle_mods{'prepp',{'Module_On','Module_Export_On'}}=[1,1]; %Turn on PREP Pipeline
+grp_proc_info.beapp_toggle_mods{'filt',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on filtering
+grp_proc_info.beapp_toggle_mods{'rsamp',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on resampling
+grp_proc_info.beapp_toggle_mods{'ica',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on ICA module (ICA, ICA+MARA, HAPPE)
+grp_proc_info.beapp_toggle_mods{'rereference',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on rereferencing
+grp_proc_info.beapp_toggle_mods{'detrend',{'Module_On','Module_Export_On'}}=[0,0]; % Turn on detrending 
+grp_proc_info.beapp_toggle_mods{'segment',{'Module_On','Module_Export_On'}}=[1,1]; % Turn on segmentation
+grp_proc_info.beapp_toggle_mods{'psd',{'Module_On','Module_Export_On'}}=[1,1]; %flag that toggles the PSD calculations
+grp_proc_info.beapp_toggle_mods{'itpc',{'Module_On','Module_Export_On'}}=[0,0]; %turns ITPC analysis on, use with event data only
+grp_proc_info.beapp_toggle_mods{'topoplot',{'Module_On','Module_Export_On'}}=[0,0]; % Turn on topoplots
 grp_proc_info.beapp_toggle_mods{'fooof',{'Module_On','Module_Export_On'}}=[0,0]; %On a power spectrum, fits oscillations and 1/f (Voytek lab)
-grp_proc_info.beapp_toggle_mods{'pac',{'Module_On','Module_Export_On'}}=[0,0]; %IN DEVELOPMENT. Phase amplitude coupling using pactools V: bisa dicoba
+grp_proc_info.beapp_toggle_mods{'pac',{'Module_On','Module_Export_On'}}=[0,0]; %IN DEVELOPMENT. Phase amplitude coupling using pactools 
 grp_proc_info.beapp_toggle_mods{'bycycle',{'Module_On','Module_Export_On'}}=[0,0]; %IN DEVELOPMENT. Characterizing waveform shape using bycycle (Voytek lab)
 
 % FORMATTING SPECIFICATIONS
 %Formatting specifications: Required
-grp_proc_info.src_format_typ = 7; %type of source file 1=.mat files, 2=mff, 3=PRE-PROCESSED + PRE-SEGMENTED MFF  4 = .set (EEGLAB) files, 6 = EDF files
+grp_proc_info.src_format_typ = 6; %type of source file 1=.mat files, 2=mff, 3=PRE-PROCESSED + PRE-SEGMENTED MFF  4 = .set (EEGLAB) files
 grp_proc_info.src_data_type = 1; % type of data being processed (for segmenting,see user guide): 1 = baseline, 2 = event related 3= conditioned baseline
 %% grp_proc_info.src_presentation_software = 1; % presentation software used for paradigm (1 = EPrime, 2 = Presentation. def = 1)
 
 %Formatting specifications: Optional
-grp_proc_info.src_linenoise= 50; % def = 60. for the notch filter, HAPPE,cleanline and PREP. If linenoise is different across files, set to = 'input_table' and put information in appropriate input table
+grp_proc_info.src_linenoise= 60; % def = 60. for the notch filter, HAPPE,cleanline and PREP. If linenoise is different across files, set to = 'input_table' and put information in appropriate input table
 grp_proc_info.src_unique_nets= {'HydroCel GSN 128 1.0','Geodesic Sensor Net 64 2.0'}; % def ={''} If not running HAPP-E with multiple nets, optional for speed. Required for more than one net if running HAPP-E
 grp_proc_info.epoch_inds_to_process = []; % def = []. ex [1], [3,4]Index of desired epochs to analyze (for ex. if resting is always in the first epoch, for baseline analysis = [1]);
-grp_proc_info.src_eeg_vname={'EEG_Segment1','Category_1_Segment1','Category_1','EEGSegment1','CA61_011419_L0A'}; %possible variable name of the EEG data EEG_Segment1
+grp_proc_info.src_eeg_vname={'Category_1_Segment1','Category_1','Category1'}; %possible variable name of the EEG data EEG_Segment1
 
 %Formatting specifications: Events
 %Formatting specifications: Event Offsets
@@ -150,10 +150,10 @@ grp_proc_info.beapp_toggle_mods{'prepp','Module_Xls_Out_On'} = 1; % flag that to
 % FILTER SPECIFICATIONS
 grp_proc_info.beapp_filters{'Notch','Filt_On'} = 0; % Notch filter at line noise frequency specified above
 grp_proc_info.beapp_filters{'Lowpass','Filt_On'} = 1;
-grp_proc_info.beapp_filters{'Lowpass','Filt_Cutoff_Freq'} = 45; 
+grp_proc_info.beapp_filters{'Lowpass','Filt_Cutoff_Freq'} = 40; 
 grp_proc_info.beapp_filters{'Highpass','Filt_On'} = 1; 
 grp_proc_info.beapp_filters{'Highpass','Filt_Cutoff_Freq'} = 0.01; % def = 1
-grp_proc_info.beapp_filters{'Cleanline','Filt_On'} = 1; % def = 0; 1 turns on cleanline for line noise frequency
+grp_proc_info.beapp_filters{'Cleanline','Filt_On'} = 0; % def = 0; 1 turns on cleanline for line noise frequency
 
 %RESAMPLING SPECIFICATIONS
 grp_proc_info.beapp_rsamp_srate = 250; %target sampling rate for resampling, if desired
@@ -190,7 +190,7 @@ grp_proc_info.dtrend_typ=1; %type of detrending method to use (1=mean, 2=linear,
 %SEGMENTING SPECIFICATIONS -- General (applies to baseline, conditioned
 %baseline, and event related)
 grp_proc_info.segment_linear_detrend = 0; %def = 0; detrend segments. 0 off, 1 = linear, 2 = mean detrend
-grp_proc_info.art_thresh = 40; %def = 180. threshold in uV for artifact removal -- will need to be adjusted for scale if HAPPE or CSDLP is run beforehand %% bandingin 40 dan 100 uV
+grp_proc_info.art_thresh = 40; %def = 180. threshold in uV for artifact removal -- will need to be adjusted for scale if HAPPE or CSDLP is run beforehand
 grp_proc_info.beapp_reject_segs_by_amplitude= 0; % def = 1; flag that toggles amplitude-based rejection of segments after segment creation
 grp_proc_info.beapp_happe_segment_rejection = 0; % def = 0; joint probability and post-segmentation amplitude based rejection of segments
 

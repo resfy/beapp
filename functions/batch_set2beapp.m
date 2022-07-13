@@ -6,11 +6,11 @@
 % pop_readbdf() - Read Biosemi 24-bit BDF file
 % Author: Arnaud Delorme, CNL / Salk Institute, 13 March 2002
 
-function grp_proc_info_in = batch_edf2beapp(grp_proc_info_in,markerCh)
+function grp_proc_info_in = batch_set2beapp(grp_proc_info_in,markerCh,headsetType)
 
 cd(grp_proc_info_in.src_dir{1});
 
-flist = dir('*.edf');
+flist = dir('*.set');
 grp_proc_info_in.src_fname_all = {flist.name};
 
 % load group information for files
@@ -70,19 +70,25 @@ clear tmp_flist indexes_in_table beapp_file_info_table
 
 for curr_file = 1:length(flist)
     
-    fprintf('Reading EDF format using BIOSIG...\n');
+    fprintf('Reading EDF format using LOADSET...\n');
 
-    %% resfy: read EDF file
+    %% resfy: read SET file
     awal = grp_proc_info_in.src_dir; akhir = grp_proc_info_in.src_fname_all{curr_file};
     nama = strcat(awal, strcat('\', akhir));
-    EDFdata = pop_biosig(nama{1}); % eeg = {EEG.data}
-    EDFdata = eeg_checkset(EDFdata); 
-    %markerCh
-    EDFdata = pop_chanevent(EDFdata,markerCh);% 24: keystrooke marker, 26: serial marker
+    EDFdata = pop_loadset(nama{1}); % eeg = {EEG.data}
+    EDFdata = eeg_checkset(EDFdata); %data event di channel 26 harus di keep juga
 
-    eeg{1} = EDFdata.data(7:20,:);
-    %harus menambahkan variable event untuk disimpan di setiap prosesnya
-    file_proc_info.evt_info = EDFdata.event; 
+% untuk data yang sudah diepoch
+%     s = size(EDFdata.data);
+%     tmp = reshape(EDFdata.data,[s(1),s(2)*s(3)]);
+%     EDFdata.data = tmp;
+    if strcmp(headsetType,'emotiv')==1
+        eeg{1} = EDFdata.data(7:20,:);
+        file_proc_info.evt_info = EDFdata.event;
+    elseif strcmp(headsetType,'deymed')==1
+        %disp 'pakai deymed'
+        eeg{1} = EDFdata.data(1:19,:);
+    end
     
     % save source file variables; resfy: ambil data dari header EDF saja
     file_proc_info.src_fname=grp_proc_info_in.src_fname_all(curr_file);%file name: EEG.filename 
@@ -130,6 +136,6 @@ for curr_file = 1:length(flist)
         file_proc_info = beapp_prepare_to_save_file('format',file_proc_info, grp_proc_info_in,grp_proc_info_in.src_dir{1});
         save(file_proc_info.beapp_fname{1},'file_proc_info','eeg'); %,'allEDFdata');
     end
-    clearvars -except grp_proc_info_in curr_file user_unique_nets markerCh
+    clearvars -except grp_proc_info_in curr_file user_unique_nets markerCh headsetType
 end
 clear grp_proc_info_in.src_srate_all grp_proc_info_in.src_linenoise_all grp_proc_info_in.src_net_typ_all

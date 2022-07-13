@@ -1,4 +1,4 @@
-function beapp_main(grp_proc_info_main)
+function beapp_main(grp_proc_info_main,sourceDir,Tag, sourceFormat, Datatype, linenoise, LowPassFreq, HighPassFreq, rsamFreq, ICAType, refType,markerCh,headsetType)
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % The Batch Electroencephalography Automated Processing Platform (BEAPP)
@@ -170,14 +170,16 @@ tic;
 
 % set defaults and path, get user inputs if using scripts
 if isequal(grp_proc_info_main, 'use_script')
-    grp_proc_info_main = beapp_configure_settings;
+    grp_proc_info_main = beapp_configure_settings(sourceDir,Tag,...
+        sourceFormat, Datatype, linenoise, ...
+        LowPassFreq, HighPassFreq, rsamFreq, ICAType, refType,headsetType);
 end
 % check inputs, set output directories
 grp_proc_info_main = prepare_to_run_main (grp_proc_info_main);
 
 % run pipeline modules
 if grp_proc_info_main.beapp_toggle_mods{'format','Module_On'}
-    grp_proc_info_main = batch_beapp_format(grp_proc_info_main);
+    grp_proc_info_main = batch_beapp_format(grp_proc_info_main,markerCh,headsetType);
 end
 
 if grp_proc_info_main.beapp_toggle_mods{'prepp','Module_On'}

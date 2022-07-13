@@ -31,7 +31,6 @@
 % this program. If not, see <http://www.gnu.org/licenses/>.
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function src_dir = find_input_dir(current_module_name,beapp_toggle_mods)
-
 disp('|====================================|');
 disp(['Running data through the ' current_module_name ' module']);
 

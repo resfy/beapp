@@ -10,18 +10,18 @@
 file_ext = '.mat';
 
 % source directory for your files (full path)
-table_files_src_dir = 'C:\BEAPP_manuscript_auditory';
+table_files_src_dir = 'D:\Vanaya Neurolab\MATLAB CODES\BEAPP\data sample\';
 
 % where would you like to save your table (typically the user inputs
 % folder)
-table_save_directory = 'C:\beapp\user_inputs';
+table_save_directory = 'D:\Vanaya Neurolab\MATLAB CODES\BEAPP\beapp\user_inputs';
 
 % net type name -- the exact name of your net as it appears in the net
 % library and/or your source data file
 net_type_name = 'HydroCel GSN 128 1.0'; 
 
 % sampling rate for your files
-samplingRate = 500;
+samplingRate = 250;
 
 % linenoise frequency for your files
 linenoise_freq = 60;

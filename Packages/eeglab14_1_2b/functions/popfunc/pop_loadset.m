@@ -95,7 +95,7 @@ else
     for ifile = 1:length(g.filename)
         
          if ifile > 1 && option_storedisk
-              g.loadmode = 'last';
+              g.loadmode = 'last';              
 %             warndlg2(strvcat('You may only load a single dataset','when selecting the "Store at most one', 'dataset in memory" option'));
 %             break;
          end;

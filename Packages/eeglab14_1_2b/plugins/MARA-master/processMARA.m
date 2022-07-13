@@ -90,6 +90,7 @@ function [ALLEEG,EEG,CURRENTSET] = processMARA(ALLEEG,EEG,CURRENTSET,varargin)
     end
 
     %% classify artifactual components with MARA
+    size(EEG.data)
     [artcomps, MARAinfo] = MARA(EEG);
     EEG.reject.MARAinfo = MARAinfo; 
     disp('MARA marked the following components for rejection: ')

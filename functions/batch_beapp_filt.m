@@ -62,12 +62,13 @@ end
 
 for curr_file=1:length(grp_proc_info_in.beapp_fname_all)
     
-    cd(src_dir{1})
+    cd(src_dir{1});
+    % display(strcat(src_dir{1},filesep,grp_proc_info_in.beapp_fname_all{curr_file}),'file')
     
     if exist(strcat(src_dir{1},filesep,grp_proc_info_in.beapp_fname_all{curr_file}),'file')
         tic;
         load(grp_proc_info_in.beapp_fname_all{curr_file},'eeg','file_proc_info');
-        
+                
         for curr_epoch = 1:size(eeg,2)
             diary off;
             

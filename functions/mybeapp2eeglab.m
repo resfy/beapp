@@ -1,8 +1,16 @@
-%% curr_epoch_beapp2eeglab
+%% beapp2eeglab (file_proc_info,eeg_curr_rec_period,curr_rec_period,event_data)
+
+% convert file (one recording period) from beapp format to EEGLAB format
+% only applied to data pre-segmentation
+% Inputs: 
+% file_proc_info: BEAPP file_proc_info structure
 %
-% convert current recording period ("epoch" in old BEAPP) to EEGLAB struct
-% will eventually be changed to curr_rec_period_beapp2eeglab
-%
+% eeg_curr_rec_period : eeg data for desired rec_period (in eeg) ex eeg{1} 
+% 
+% curr_rec_period : rec_period to pull file information from (bad chans,
+% etc). should be integer ex. 1 
+
+% event_data : 1 if you'd like to add events, 0 if not
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % The Batch Electroencephalography Automated Processing Platform (BEAPP)
 % Copyright (C) 2015, 2016, 2017
@@ -32,22 +40,23 @@
 % You should receive a copy of the GNU General Public License along with
 % this program. If not, see <http://www.gnu.org/licenses/>.
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function EEG=curr_epoch_beapp2eeglab(file_proc_info,eeg_curr_epoch,curr_epoch)
+function EEG = beapp2eeglab(file_proc_info,eeg_curr_rec_period,curr_rec_period)%,event_data)%,beapp_stage)
 % initialize EEGLab structure using EEGLab script
-%file_proc_info
-%eeg_curr_epoch
-%curr_epoch
 EEG=eeg_emptyset;
-EEG.data = eeg_curr_epoch; 
-EEG.srate=file_proc_info.beapp_srate;
-EEG.setname = file_proc_info.beapp_fname{1}; 
-EEG.nbchan=file_proc_info.beapp_nchans_used(curr_epoch);
+EEG.data = eeg_curr_rec_period{1};
+EEG.srate = file_proc_info.beapp_srate;
+EEG.setname = file_proc_info.beapp_fname{1};
+EEG.nbchan = file_proc_info.beapp_nchans_used(curr_rec_period);
 EEG.chanlocs=file_proc_info.net_vstruct;
 EEG.history=sprintf(['EEG = pop_importdata(''dataformat'',''matlab'',''nbchan'',0,''data'',',file_proc_info.beapp_fname{1},'''',',''setname'',''BEAPP_Dataset'',''srate'',0,''pnts'',0,''xmin'',0);\n','EEG = eeg_checkset( EEG );']);
 EEG.noiseDetection.status = [];
 EEG.noiseDetection.errors.status = '';
+EEG.event = file_proc_info.evt_info;
+for i = 1: length(EEG.event)
+    EEG.event(i).epoch=1;
+end
+% if isfield(file_proc_info,'evt_info') && event_data
+%     EEG =add_events_eeglab_struct(EEG,file_proc_info.evt_info{curr_rec_period});
+% end
 EEG=orderfields(EEG);
-%size(EEG.data)
-[EEG, changes] =eeg_checkset(EEG); %INI MASALAHNYA
-%EEG.chanlocs.labels
-
+%EEG=eeg_checkset(EEG);

@@ -40,7 +40,7 @@ function [EEG_tmp, full_selected_channels,file_max_filt_freq] = happe_bandpass_c
 if curr_srate <500
     EEG_tmp = pop_eegfiltnew(EEG_orig, [],1,[],1,[],0);
 else
-    EEG_tmp = pop_eegfiltnew(EEG_orig, 1,249,[],0,[],0);
+    EEG_tmp = pop_eegfiltnew(EEG_orig, 0.01,249,[],0,[],0);
     
     if ~isnan(file_max_filt_freq)
         if file_max_filt_freq > 249
@@ -50,8 +50,10 @@ else
         file_max_filt_freq =249;
     end
 end
-
+%display(EEG_tmp.chanlocs) %kanal pertama bernama E1
+%display(chan_IDs)
 EEG_tmp = pop_select(EEG_tmp,'channel', chan_IDs);
+
 
 %select EEG channels of interest for analyses and 10-20 channels
 full_selected_channels = EEG_tmp.chanlocs;

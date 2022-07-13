@@ -8,7 +8,7 @@
 % 
 % Contributors to BEAPP:
 % April R. Levin, MD (april.levin@childrens.harvard.edu)
-% Adriana MÈndez Leal (asmendezleal@gmail.com)
+% Adriana M√©ndez Leal (asmendezleal@gmail.com)
 % Laurel Gabard-Durnam, PhD (laurel.gabarddurnam@gmail.com)
 % Heather M. O'Leary (Heather.oleary1@gmail.com)
 % 
@@ -17,7 +17,7 @@
 % april.levin@childrens.harvard.edu
 %
 % In publications, please reference:
-% Levin AR, MÈndez Leal AS, Gabard-Durnam LJ and OíLeary HM (2018) 
+% Levin AR, M√©ndez Leal AS, Gabard-Durnam LJ and O‚ÄôLeary HM (2018) 
 % BEAPP: The Batch Electroencephalography Automated Processing Platform.
 %  Front. Neurosci. 12:513. doi: 10.3389/fnins.2018.00513
 %
@@ -79,14 +79,14 @@
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See GNU General
 % Public License for more details.
 % 
-% In no event shall Boston Childrenís Hospital (BCH), the BCH Department of
+% In no event shall Boston Children‚Äôs Hospital (BCH), the BCH Department of
 % Neurology, the Laboratories of Cognitive Neuroscience (LCN), or software 
 % contributors to BEAPP be liable to any party for direct, indirect, 
 % special, incidental, or consequential damages, including lost profits, 
 % arising out of the use of this software and its documentation, even if 
-% Boston Childrenís Hospital,the Laboratories of Cognitive Neuroscience, 
+% Boston Children‚Äôs Hospital,the Laboratories of Cognitive Neuroscience, 
 % and software contributors have been advised of the possibility of such 
-% damage. Software and documentation is provided ìas is.î Boston Childrenís 
+% damage. Software and documentation is provided ‚Äúas is.‚Äù Boston Children‚Äôs 
 % Hospital, the Laboratories of Cognitive Neuroscience, and software 
 % contributors are under no obligation to provide maintenance, support, 
 % updates, enhancements, or modifications.
@@ -99,37 +99,37 @@
 % this program. If not, see <http://www.gnu.org/licenses/>.
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% GENERAL USER INPUTS for BEAPP: Set these for any data runs
-grp_proc_info.src_dir={'D:\Vanaya Neurolab\ANI NEW STIMULUS - DATA SAMPLE\2-PPFilesRiset'}; %the directory containing your source files
-grp_proc_info.beapp_curr_run_tag = 'trial 3'; % The tag you would like to append to folder names for this run. def = '' or 'NONE'. 'NONE' mutes timestamping. If not given on a rerun, a timestamp will be used. 
-grp_proc_info.beapp_prev_run_tag = ''; % def = ''.  run tag for previous run that you would like to use as source data for rerun. can be timestamp, but must be exact.
+%% GENERAL USER INPUTS for BEAPP: Set these for any data runs
+grp_proc_info.src_dir= {SourceDir};  %the directory containing your source files
+grp_proc_info.beapp_curr_run_tag = Tag; % The tag you would like to append to folder names for this run. def = '' or 'NONE'. 'NONE' mutes timestamping. If not given on a rerun, a timestamp will be used. 
+grp_proc_info.beapp_prev_run_tag = ''; % run tag for previous run that you would like to use as source data for rerun. can be timestamp, but must be exact.
 grp_proc_info.beapp_advinputs_on= 0; %flag that toggles advanced user options, default is 0 (user did not set advanced user values)
 
-% MODULE SELECTION
+%% MODULE SELECTION
 % pipeline flags:0=off, 1=on
 grp_proc_info.beapp_toggle_mods{'format',{'Module_On','Module_Export_On'}}=[1,1]; % Convert source files to BEAPP format
 grp_proc_info.beapp_toggle_mods{'prepp',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on PREP Pipeline
-grp_proc_info.beapp_toggle_mods{'filt',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on filtering V
-grp_proc_info.beapp_toggle_mods{'rsamp',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on resampling V 128Hz
-grp_proc_info.beapp_toggle_mods{'ica',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on ICA module (ICA, ICA+MARA, HAPPE) V
-grp_proc_info.beapp_toggle_mods{'rereference',{'Module_On','Module_Export_On'}}=[0,0]; %Turn on rereferencing V
+grp_proc_info.beapp_toggle_mods{'filt',{'Module_On','Module_Export_On'}}=[1,1]; %Turn on filtering V
+grp_proc_info.beapp_toggle_mods{'rsamp',{'Module_On','Module_Export_On'}}=[1,1]; %Turn on resampling V 128Hz
+grp_proc_info.beapp_toggle_mods{'ica',{'Module_On','Module_Export_On'}}=[1,1]; %Turn on ICA module (ICA, ICA+MARA, HAPPE) V
+grp_proc_info.beapp_toggle_mods{'rereference',{'Module_On','Module_Export_On'}}=[1,1]; %Turn on rereferencing V
 grp_proc_info.beapp_toggle_mods{'detrend',{'Module_On','Module_Export_On'}}=[0,0]; % Turn on detrending  X
 grp_proc_info.beapp_toggle_mods{'segment',{'Module_On','Module_Export_On'}}=[1,1]; % Turn on segmentation V
 grp_proc_info.beapp_toggle_mods{'psd',{'Module_On','Module_Export_On'}}=[1,1]; %flag that toggles the PSD calculations V
 grp_proc_info.beapp_toggle_mods{'itpc',{'Module_On','Module_Export_On'}}=[0,0]; %turns ITPC analysis on, use with event data only V
-grp_proc_info.beapp_toggle_mods{'topoplot',{'Module_On','Module_Export_On'}}=[0,0]; % Turn on topoplots V
+grp_proc_info.beapp_toggle_mods{'topoplot',{'Module_On','Module_Export_On'}}=[1,1]; % Turn on topoplots V
 grp_proc_info.beapp_toggle_mods{'fooof',{'Module_On','Module_Export_On'}}=[0,0]; %On a power spectrum, fits oscillations and 1/f (Voytek lab)
 grp_proc_info.beapp_toggle_mods{'pac',{'Module_On','Module_Export_On'}}=[0,0]; %IN DEVELOPMENT. Phase amplitude coupling using pactools V: bisa dicoba
 grp_proc_info.beapp_toggle_mods{'bycycle',{'Module_On','Module_Export_On'}}=[0,0]; %IN DEVELOPMENT. Characterizing waveform shape using bycycle (Voytek lab)
 
-% FORMATTING SPECIFICATIONS
+%% FORMATTING SPECIFICATIONS
 %Formatting specifications: Required
-grp_proc_info.src_format_typ = 7; %type of source file 1=.mat files, 2=mff, 3=PRE-PROCESSED + PRE-SEGMENTED MFF  4 = .set (EEGLAB) files, 6 = EDF files
-grp_proc_info.src_data_type = 1; % type of data being processed (for segmenting,see user guide): 1 = baseline, 2 = event related 3= conditioned baseline
-%% grp_proc_info.src_presentation_software = 1; % presentation software used for paradigm (1 = EPrime, 2 = Presentation. def = 1)
+grp_proc_info.src_format_typ = sourceFormat; %type of source file 1=.mat files, 2=mff, 3=PRE-PROCESSED + PRE-SEGMENTED MFF  4 = .set (EEGLAB) files, 6 = EDF files
+grp_proc_info.src_data_type = Datatype; % type of data being processed (for segmenting,see user guide): 1 = baseline, 2 = event related 3= conditioned baseline
+% grp_proc_info.src_presentation_software = 1; % presentation software used for paradigm (1 = EPrime, 2 = Presentation. def = 1)
 
 %Formatting specifications: Optional
-grp_proc_info.src_linenoise= 50; % def = 60. for the notch filter, HAPPE,cleanline and PREP. If linenoise is different across files, set to = 'input_table' and put information in appropriate input table
+grp_proc_info.src_linenoise= linenoise; % def = 60. for the notch filter, HAPPE,cleanline and PREP. If linenoise is different across files, set to = 'input_table' and put information in appropriate input table
 grp_proc_info.src_unique_nets= {'HydroCel GSN 128 1.0','Geodesic Sensor Net 64 2.0'}; % def ={''} If not running HAPP-E with multiple nets, optional for speed. Required for more than one net if running HAPP-E
 grp_proc_info.epoch_inds_to_process = []; % def = []. ex [1], [3,4]Index of desired epochs to analyze (for ex. if resting is always in the first epoch, for baseline analysis = [1]);
 grp_proc_info.src_eeg_vname={'EEG_Segment1','Category_1_Segment1','Category_1','EEGSegment1','CA61_011419_L0A'}; %possible variable name of the EEG data EEG_Segment1
@@ -143,23 +143,23 @@ grp_proc_info.behavioral_coding.events = {''}; % def = {''}. Ex {'TRSP'} Events 
 grp_proc_info.behavioral_coding.keys = {''}; % def = {''} Keys in events containing behavioral coding information
 grp_proc_info.behavioral_coding.bad_value = {''}; % def = {''}. Value that marks behavioral coding as bad. must be string - number values must be listed as string, ex '1'
 
-%PREP SPECIFICATIONS
+%% PREP SPECIFICATIONS
 %Note that PREP removes line noise; be sure to set line noise correctly in formatting specifications
 grp_proc_info.beapp_toggle_mods{'prepp','Module_Xls_Out_On'} = 1; % flag that toggles prepp xls report option on
 
-% FILTER SPECIFICATIONS
+%% FILTER SPECIFICATIONS
 grp_proc_info.beapp_filters{'Notch','Filt_On'} = 0; % Notch filter at line noise frequency specified above
 grp_proc_info.beapp_filters{'Lowpass','Filt_On'} = 1;
-grp_proc_info.beapp_filters{'Lowpass','Filt_Cutoff_Freq'} = 45; 
+grp_proc_info.beapp_filters{'Lowpass','Filt_Cutoff_Freq'} = LowPassFreq; 
 grp_proc_info.beapp_filters{'Highpass','Filt_On'} = 1; 
-grp_proc_info.beapp_filters{'Highpass','Filt_Cutoff_Freq'} = 0.01; % def = 1
+grp_proc_info.beapp_filters{'Highpass','Filt_Cutoff_Freq'} = HighPassFreq; % def = 1
 grp_proc_info.beapp_filters{'Cleanline','Filt_On'} = 1; % def = 0; 1 turns on cleanline for line noise frequency
 
-%RESAMPLING SPECIFICATIONS
-grp_proc_info.beapp_rsamp_srate = 250; %target sampling rate for resampling, if desired
+%% RESAMPLING SPECIFICATIONS
+grp_proc_info.beapp_rsamp_srate = rsamFreq; %target sampling rate for resampling, if desired
 
-% ICA SPECIFICATIONS
-grp_proc_info.beapp_ica_type  = 2; % 1 = ICA with MARA, 2 = HAPPE, 3 = only ICA 
+%% ICA SPECIFICATIONS
+grp_proc_info.beapp_ica_type  = ICAType; % 1 = ICA with MARA, 2 = HAPPE, 3 = only ICA 
 grp_proc_info.beapp_toggle_mods{'ica','Module_Xls_Out_On'} = 1; % flag that toggles ICA xls report option on
 
 %choose whether to run all 10_20 electrodes (if running HAPPE or MARA,
@@ -176,22 +176,22 @@ grp_proc_info.beapp_ica_10_20_chans_lbls{1} = [];
 grp_proc_info.beapp_ica_additional_chans_lbls{1} = []; % def = []. ex. [4,8,19,20]
 grp_proc_info.beapp_ica_additional_chans_lbls{2} = [];
 
-% REREFENCING SPECIFICATIONS
+%% REREFENCING SPECIFICATIONS
  %type of reference method to use (1= average, 2= CSD Laplacian, 3 = specific electrodes, 4 = REST)
-grp_proc_info.reref_typ = 1;
+grp_proc_info.reref_typ = refType;
 
 % Rows in eeg corresponding to desired reference channel for each net (only used if reref_typ = 3)
 % MUST match number of nets and order of nets in .src_unique nets exactly ex {[57,100],[51,26]};
 grp_proc_info.beapp_reref_chan_inds = {[]}; % def = {[]}; 
 
-% DETRENDING SPECIFICATIONS
+%% DETRENDING SPECIFICATIONS
 grp_proc_info.dtrend_typ=1; %type of detrending method to use (1=mean, 2=linear, 3=Kalman)
 
-%SEGMENTING SPECIFICATIONS -- General (applies to baseline, conditioned
+%% SEGMENTING SPECIFICATIONS -- General (applies to baseline, conditioned
 %baseline, and event related)
 grp_proc_info.segment_linear_detrend = 0; %def = 0; detrend segments. 0 off, 1 = linear, 2 = mean detrend
-grp_proc_info.art_thresh = 40; %def = 180. threshold in uV for artifact removal -- will need to be adjusted for scale if HAPPE or CSDLP is run beforehand %% bandingin 40 dan 100 uV
-grp_proc_info.beapp_reject_segs_by_amplitude= 0; % def = 1; flag that toggles amplitude-based rejection of segments after segment creation
+grp_proc_info.art_thresh = 100; %def = 180. threshold in uV for artifact removal -- will need to be adjusted for scale if HAPPE or CSDLP is run beforehand %% bandingin 40 dan 100 uV
+grp_proc_info.beapp_reject_segs_by_amplitude= 1; % def = 1; flag that toggles amplitude-based rejection of segments after segment creation
 grp_proc_info.beapp_happe_segment_rejection = 0; % def = 0; joint probability and post-segmentation amplitude based rejection of segments
 
 % SEGMENTING SPECIFICATIONS -- BASELINE/CONDITIONED BASELINE ONLY
@@ -233,14 +233,14 @@ grp_proc_info.evt_trial_baseline_removal = 0; % def = 0; flag on use of pop_rmba
 grp_proc_info.evt_trial_baseline_win_start = -.100; % def = -0.100;  start time in seconds for baseline, relative to the event marker of interest (ex -0.100, 0). Must be within range you've segmented on. 
 grp_proc_info.evt_trial_baseline_win_end = -.100; % def = -0.100;  start time in seconds for baseline, relative to the event marker of interest (ex -0.100, 0) 
 
-%OUTPUT MEASURE SPECIFICATIONS
+%% OUTPUT MEASURE SPECIFICATIONS
 % trial selection specifications
 % select n of usable segments PER CONDITION to use for output measure
 % [] = use all possible segments, n = use specific number, discard file if file has
 % fewer than n
 grp_proc_info.win_select_n_trials = [];
 
-%OUTPUT MEASURE SPECIFICATIONS
+%% OUTPUT MEASURE SPECIFICATIONS
 % Bandwith information. Total includes in all output bands by default
 %THESE ARE ABC FREQUENCIES;
 grp_proc_info.bw(1,1:2)=[0.4,4]; %bandwidth 1 start and end frequencies (the first band), can have as many or as few bandwidths as the user would like
@@ -258,7 +258,7 @@ grp_proc_info.bw_name(5)={'Gamma'}; %name of bandwidth 5
 % gaps between frequencies of less than 1 Hz will be ignored
 grp_proc_info.bw_total_freqs = [1:55,65:100];
 
-% PSD SPECIFICATIONS
+%% PSD SPECIFICATIONS
 grp_proc_info.psd_win_typ=1; %power spectra windowing type 0=rectangular window, 1=hanning window, 2=multitaper (recomended 2 seconds or longer)
 grp_proc_info.psd_interp_typ=1; %type of interpolation of psd 1 none, 2 linear, 3 nearest neighbor, 4 piecewise cubic spline  
 grp_proc_info.beapp_toggle_mods{'psd','Module_Xls_Out_On'}=0; %flags the export data to xls report option on
@@ -266,7 +266,7 @@ grp_proc_info.beapp_toggle_mods{'psd','Module_Xls_Out_On'}=0; %flags the export 
 %for event-related data only
 grp_proc_info.psd_baseline_normalize = 0; %0 to not normalize, 1 to normalize using decibel conversion; 2 to normalize with percent change 
 
-% ITPC SPECIFICATIONS
+%% ITPC SPECIFICATIONS
 % see newtimef in EEGLAB for more details on these inputs
 grp_proc_info.beapp_itpc_params.win_size= 0.128; %CURRENTLY NOT USED; the win_size (in seconds) to calculate ERSP and ITPC from the ERPs of the composed dataset (e.g. should result in a number of samples an integer and divide trials equaly ex: 10)
 grp_proc_info.beapp_itpc_params.baseline_norm = 1;
@@ -278,7 +278,7 @@ grp_proc_info.beapp_itpc_params.min_cyc = 2; % def = 2; number of cycles in each
 grp_proc_info.beapp_itpc_params.max_cyc = 2; % def = 0; 0 = use same window size across freqs, 1 = use same number of cycles, 0<max_cyc<1 = increase cycles  linearly, max_cyc>1 = incr cycles from min_cyc up to max cyc
 grp_proc_info.beapp_toggle_mods{'itpc','Module_Xls_Out_On'}=0;%flags the export data to xls report option on
 
-% FOOOF SPECIFICATIONS 
+%% FOOOF SPECIFICATIONS 
 grp_proc_info.fooof_min_freq = 1; %The frequency range of the psd fooof will run on
 grp_proc_info.fooof_max_freq = 50;
 grp_proc_info.fooof_peak_width_limits = [0,10]; %Set peak width limit to prevent overfitting. Needs to be > frequency resolution
@@ -295,7 +295,7 @@ grp_proc_info.fooof_average_chans = 0; %1 if channels should be averaged; 0 if t
 grp_proc_info.fooof_channel_groups = {}; %Ex: {[8,9,10],[15,16,17,18,19,20]}; if averaging is on, but channels should be averaged in seperate groups; leave as {} if channels should be averaged together
 grp_proc_info.fooof_chans_to_analyze = []; %list channels to analyze if only some channels should be analyzed; else, leave as []
 
-%PAC SPECIFICATIONS
+%% PAC SPECIFICATIONS
 grp_proc_info.pac_low_fq_min = 12; %Minimum frequency of the low frequency to calculate
 grp_proc_info.pac_low_fq_max = 12; %Maximum frequency of the low frequency to calculate
 grp_proc_info.pac_low_fq_res = 1; %The # of frequencies to calculate between the min and max;Ex: to calculate for frequencies 1-10, set min to 1, max to 10, and res to 10
@@ -311,7 +311,7 @@ grp_proc_info.pac_save_channels = []; %Specify to only save reports for some cha
 grp_proc_info.pac_xlsout_on = 0; %1 if excel reports should be saved, 0 if not. 
 grp_proc_info.pac_chans_to_analyze = []; %list channels to analyze if only some channels should be analyzed; else, leave as []
 
-%BYCYCLE SPECIFICATIONS
+%% BYCYCLE SPECIFICATIONS
 grp_proc_info.bycycle_freq_bands = [6,8;8,10;12,14]; %Ex: 6,8;8,10. Enter minimum, maximum frequency for each range, and separate ranges using a semicolon.
 grp_proc_info.bycycle_gen_reports = true;
 grp_proc_info.bycycle_save_reports = true;

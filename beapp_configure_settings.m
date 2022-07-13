@@ -30,14 +30,15 @@
 % You should receive a copy of the GNU General Public License along with
 % this program. If not, see <http://www.gnu.org/licenses/>.
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function grp_proc_info = beapp_configure_settings
-grp_proc_info = set_beapp_def;
+function grp_proc_info = beapp_configure_settings(SourceDir,Tag,sourceFormat, Datatype, linenoise, ...
+    LowPassFreq, HighPassFreq, rsamFreq, ICAType, refType,headsetType)
+grp_proc_info = set_beapp_def(headsetType);
 grp_proc_info = set_beapp_path (grp_proc_info);
 beapp_set_input_file_locations;
 
 % get basic user inputs from default or user specified location
 if strcmp(grp_proc_info.beapp_alt_user_input_location{1},'')
-    beapp_userinputs;
+    beapp_userinputs_ANI;
 else
     [~,input_script_name] = fileparts(grp_proc_info.beapp_alt_user_input_location{1});
     eval(input_script_name); clear input_script_name;

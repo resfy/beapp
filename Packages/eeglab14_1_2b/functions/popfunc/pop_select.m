@@ -253,6 +253,7 @@ end
 
 if ~isempty(EEG.chanlocs)
     if strcmpi(g.sorttrial, 'on')
+        %display(EEG.chanlocs) %EEG.chanlocs terdeteksi menjadi E1 disini
         g.channel = eeg_decodechan(EEG.chanlocs, g.channel);
     else
         % we have to protect the channel order against changes by eeg_decodechan
